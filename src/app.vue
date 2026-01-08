@@ -3,40 +3,40 @@
     <h1>JRの割引計算機</h1>
     <div class="form-group">
       <label>運賃（円）</label>
-      <input type="number" class="form-control" v-model.number="basicFee">
+      <input v-model.number="basicFee" type="number" class="form-control" />
     </div>
     <div class="form-group">
       <label>特急料金（円）</label>
-      <input type="number" class="form-control" v-model.number="expressFee">
+      <input v-model.number="expressFee" type="number" class="form-control" />
     </div>
     <div class="checkbox">
       <label>
-        <input type="checkbox" v-model="buyTwoWayTicket">
+        <input v-model="buyTwoWayTicket" type="checkbox" />
         往復切符を買う
       </label>
       <ul v-show="buyTwoWayTicket">
         <li>
           <label>
-            <input type="checkbox" v-model="useTwoWayDiscount">
-            <span :class="{'text-danger': isTwoWayDiscountInvalid}">
-              往復割を使う
-            </span>
+            <input v-model="useTwoWayDiscount" type="checkbox" />
+            <span :class="{ 'text-danger': isTwoWayDiscountInvalid }"> 往復割を使う </span>
           </label>
           <ul v-show="useTwoWayDiscount">
             <li>
               <label>
-                <input type="checkbox" v-model="twoWayDiscountCheck1">
-                <span :class="{'text-danger': !twoWayDiscountCheck1}">
+                <input v-model="twoWayDiscountCheck1" type="checkbox" />
+                <span :class="{ 'text-danger': !twoWayDiscountCheck1 }">
                   片道601km以上である（東京ー大阪間は不可）
                 </span>
               </label>
             </li>
             <li>
               <label>
-                <input type="checkbox" v-model="twoWayDiscountCheck2">
-                <span :class="{'text-danger': !twoWayDiscountCheck2}">
-                  乗車券の有効日数を超える場合は往復切符を買うことができないことを知っている<br>
-                  （<a href="https://www.jreast.co.jp/kippu/04.html">乗車券の有効期間｜きっぷのルール：JRおでかけネット</a>）
+                <input v-model="twoWayDiscountCheck2" type="checkbox" />
+                <span :class="{ 'text-danger': !twoWayDiscountCheck2 }">
+                  乗車券の有効日数を超える場合は往復切符を買うことができないことを知っている<br />
+                  （<a href="https://www.jreast.co.jp/kippu/04.html"
+                    >乗車券の有効期間｜きっぷのルール：JRおでかけネット</a
+                  >）
                 </span>
               </label>
             </li>
@@ -46,42 +46,44 @@
     </div>
     <div class="checkbox">
       <label>
-        <input type="checkbox" v-model="useStudentDiscount">
-        <span :class="{'text-danger': isStudentDiscountInvalid}">
-          学割を使う
-        </span>
+        <input v-model="useStudentDiscount" type="checkbox" />
+        <span :class="{ 'text-danger': isStudentDiscountInvalid }"> 学割を使う </span>
       </label>
       <ul v-show="useStudentDiscount">
         <li>
           <label>
-            <input type="checkbox" v-model="studentDiscountCheck1">
-            <span :class="{'text-danger': !studentDiscountCheck1}">
-              片道101km以上である
+            <input v-model="studentDiscountCheck1" type="checkbox" />
+            <span :class="{ 'text-danger': !studentDiscountCheck1 }"> 片道101km以上である </span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input v-model="studentDiscountCheck2" type="checkbox" />
+            <span :class="{ 'text-danger': !studentDiscountCheck2 }">
+              乗車券の有効日数を超える場合は往復切符を買うことができないので，往路と復路で学割証が2枚必要なことを知っている<br />
+              （<a href="https://www.jreast.co.jp/kippu/04.html"
+                >乗車券の有効期間｜きっぷのルール：JRおでかけネット</a
+              >）
             </span>
           </label>
         </li>
         <li>
           <label>
-            <input type="checkbox" v-model="studentDiscountCheck2">
-            <span :class="{'text-danger': !studentDiscountCheck2}">
-              乗車券の有効日数を超える場合は往復切符を買うことができないので，往路と復路で学割証が2枚必要なことを知っている<br>
-              （<a href="https://www.jreast.co.jp/kippu/04.html">乗車券の有効期間｜きっぷのルール：JRおでかけネット</a>）
-            </span>
-          </label>
-        </li>
-        <li>
-          <label>
-            <input type="checkbox" v-model="studentDiscountCheck3">
-            <span :class="{'text-danger': !studentDiscountCheck3}">
-              大都市近郊区間では往復券は発売当日のみ有効で，日が変わる場合には往路と復路で学割証が2枚必要なことを知っている<br>  
-              （<a href="https://www.jr-odekake.net/railroad/ticket/guide/02b.html#5">大都市近郊区間内のみをご利用になる場合の特例｜きっぷのルール：JRおでかけネット</a>）
+            <input v-model="studentDiscountCheck3" type="checkbox" />
+            <span :class="{ 'text-danger': !studentDiscountCheck3 }">
+              大都市近郊区間では往復券は発売当日のみ有効で，日が変わる場合には往路と復路で学割証が2枚必要なことを知っている<br />
+              （<a href="https://www.jr-odekake.net/railroad/ticket/guide/02b.html#5"
+                >大都市近郊区間内のみをご利用になる場合の特例｜きっぷのルール：JRおでかけネット</a
+              >）
             </span>
           </label>
         </li>
       </ul>
     </div>
-    <div class="alert alert-warning" role="alert" v-show="showWarning">チェックボックスを確認してください</div>
-    <b>結果</b> {{formula}} = {{amount}}
+    <div v-show="showWarning" class="alert alert-warning" role="alert">
+      チェックボックスを確認してください
+    </div>
+    <b>結果</b> {{ formula }} = {{ amount }}
   </div>
 </template>
 
@@ -103,37 +105,18 @@ export default {
       studentDiscountCheck3: false,
     };
   },
-  watch: {
-    buyTwoWayTicket() {
-      if (this.buyTwoWayTicket === false) {
-        this.useTwoWayDiscount = false;
-      }
-    },
-    useTwoWayDiscount() {
-      if (this.useTwoWayDiscount === false) {
-        this.twoWayDiscountCheck1 = false;
-        this.twoWayDiscountCheck2 = false;
-      }
-    },
-    useStudentDiscount() {
-      if (this.useStudentDiscount === false) {
-        this.studentDiscountCheck1 = false;
-        this.studentDiscountCheck2 = false;
-        this.studentDiscountCheck3 = false;
-      }
-    },
-  },
   computed: {
     showWarning() {
       return this.isTwoWayDiscountInvalid || this.isStudentDiscountInvalid;
     },
     isTwoWayDiscountInvalid() {
-      return this.useTwoWayDiscount &&
-        !(this.twoWayDiscountCheck1 && this.twoWayDiscountCheck2);
+      return this.useTwoWayDiscount && !(this.twoWayDiscountCheck1 && this.twoWayDiscountCheck2);
     },
     isStudentDiscountInvalid() {
-      return this.useStudentDiscount &&
-        !(this.studentDiscountCheck1 && this.studentDiscountCheck2 && this.studentDiscountCheck3);
+      return (
+        this.useStudentDiscount &&
+        !(this.studentDiscountCheck1 && this.studentDiscountCheck2 && this.studentDiscountCheck3)
+      );
     },
     formula() {
       let result = this.basicFee.toString();
@@ -168,6 +151,26 @@ export default {
         result *= 2;
       }
       return currencyFormatter.format(result, { locale: 'ja-JP' });
+    },
+  },
+  watch: {
+    buyTwoWayTicket() {
+      if (this.buyTwoWayTicket === false) {
+        this.useTwoWayDiscount = false;
+      }
+    },
+    useTwoWayDiscount() {
+      if (this.useTwoWayDiscount === false) {
+        this.twoWayDiscountCheck1 = false;
+        this.twoWayDiscountCheck2 = false;
+      }
+    },
+    useStudentDiscount() {
+      if (this.useStudentDiscount === false) {
+        this.studentDiscountCheck1 = false;
+        this.studentDiscountCheck2 = false;
+        this.studentDiscountCheck3 = false;
+      }
     },
   },
   methods: {

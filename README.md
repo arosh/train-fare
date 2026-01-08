@@ -1,21 +1,19 @@
 # train-fare
 
-> A Vue.js project
+Train fare calculator built with Vue 2.7 + Vite.
 
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:8080
+# dev server (default: http://localhost:5173)
 npm run dev
 
 # build for production with minification
 npm run build
 
-# build for production and view the bundle analyzer report
-npm run build --report
+# preview the production build
+npm run preview
 ```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

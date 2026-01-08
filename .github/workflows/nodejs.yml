@@ -3,7 +3,7 @@ name: Node CI
 on:
   push:
     branches:
-    - vue
+      - vue
 
 jobs:
   build:
@@ -11,15 +11,15 @@ jobs:
     permissions:
       contents: write
     steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 18.x
-    - name: npm install, build, and test
-      run: |
-        yarn install
-        yarn build
-    - uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./dist
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 18.x
+      - name: npm install, build, and test
+        run: |
+          yarn install
+          yarn build
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
