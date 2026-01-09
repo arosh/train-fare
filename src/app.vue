@@ -1,6 +1,16 @@
 <template>
   <div class="container">
     <h1>JRの割引計算機</h1>
+    <div class="alert alert-info">
+      <h4 class="alert-heading">JRグループの運賃制度改定（2026年3月14日〜）</h4>
+
+      <b>往復割引制度が終了</b>します（2026年3月13日発売分まで）。 詳細は<a
+        href="https://jr-central.co.jp/news/release/_pdf/000044684.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        >JR東海のニュースリリース（PDF）</a
+      >をご覧ください。
+    </div>
     <div class="form-group">
       <label>運賃（円）</label>
       <input v-model.number="basicFee" type="number" class="form-control" />
